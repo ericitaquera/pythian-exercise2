@@ -18,6 +18,3 @@ data "template_file" "wordpress_url" {
 output "wordpress_url" {
 	value = "${data.template_file.wordpress_url.rendered}"
 }
-
-
-

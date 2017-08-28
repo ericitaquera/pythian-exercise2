@@ -257,8 +257,4 @@ resource "aws_elasticache_cluster" "groo-Memcached" {
 	num_cache_nodes = "3"
 	subnet_group_name = "${aws_elasticache_subnet_group.groo-elasticache-SNG.id}"
 	security_group_ids = ["${aws_security_group.groo-sg-RDS.id}"]
-#	cache_nodes {
-#		availability_zones = ["${split(",", lookup(var.availability_zones, var.region["primary"]))}"]
-#	}		
-
 }
