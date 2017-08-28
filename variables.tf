@@ -1,3 +1,9 @@
+variable trusted_ips {
+  type = "list"
+
+  default = ["201.1.96.12/32","0.0.0.0/0"]
+}
+
 variable "instance_name"{
 	default = "grooWP"
 }
@@ -6,14 +12,14 @@ variable region {
   type = "map"
 
   default = {
-    "primary" = "us-east-2"
-    "backup"  = "us-east-1"
+    "primary" = "us-east-1"
+    "backup"  = "us-east-2"
   }
 }
 
 variable keypair {
   type = "string"
-  default = "groo-us-east-2"
+  default = "TerraformRHEL"
 }
 
 variable wp_ami {
