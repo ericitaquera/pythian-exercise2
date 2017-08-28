@@ -4,6 +4,7 @@ resource "template_file" "wordpress" {
 		rds_address = "${aws_db_instance.groowpdatabase.address}"
 		alb_dns = "${aws_alb.groo-ALB.dns_name}"
 		memcached_endpoint = "${aws_elasticache_cluster.groo-Memcached.configuration_endpoint}"
+		dataabase_server_name ="${aws_db_instance.groowpdatabase.address}"
 	}	
 	lifecycle {
 		create_before_destroy = true
@@ -207,7 +208,7 @@ resource "aws_db_instance" "groowpdatabase" {
 	allocated_storage = "5"
 	#arn = "arn:aws:rds:us-east-2:603592623618:db:groowpdatabase"
 	auto_minor_version_upgrade = "true"
-	availability_zone = "us-east-2b"
+	availability_zone = "${element(split(",",lookup(var.availability_zones, var.region["primary"])), 0)}"
 	backup_retention_period = "7"
 	backup_window = "04:57-05:27"
 	#ca_cert_identifier = "rds-ca-2015"
@@ -247,7 +248,7 @@ resource "aws_db_instance" "groowpdatabase" {
 
 resource "aws_elasticache_cluster" "groo-Memcached" {
 	cluster_id = "groo-memcached"
-	availability_zone = "us-east-2a"
+	availability_zone = "${element(split(",",lookup(var.availability_zones, var.region["primary"])), 0)}"
 	engine = "memcached"
 	node_type = "cache.t2.micro"
 	engine_version = "1.4.34"

@@ -20,7 +20,7 @@ cd /tmp
 
 wget https://s3.us-east-2.amazonaws.com/groo-wordpress-files/wordpress.sql
 
-mysql -u groo -pnhanhanhanha -h groowpdatabase.cane12mklj8m.us-east-2.rds.amazonaws.com < wordpress.sql
+mysql -u groo -pnhanhanhanha -h ${dataabase_server_name} < wordpress.sql
 
 cd /var/www/html/
 
